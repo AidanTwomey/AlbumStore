@@ -23,8 +23,9 @@ test_script:
 build: off
 
 artifacts:
-  - path: archive.zip
+  - path: *
     name: AlbumStore
+    type: zip
 
 deploy:
   provider: S3
