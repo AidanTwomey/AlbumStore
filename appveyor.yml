@@ -23,8 +23,8 @@ test_script:
 build: off
 
 artifacts:
-  - path: '*'
-    name: AlbumStore
+  - path: '%APPVEYOR_BUILD_FOLDER%'
+    name: archive.zip
     type: zip
 
 deploy:
