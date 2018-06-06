@@ -28,11 +28,11 @@ artifacts:
 
 deploy:
   provider: S3
-  access_key_id:AKIAI5GGZIUKROBMISJQ
-  secret_access_key:%aws_shared_access_key%
-  bucket:album-store-lambda
+  access_key_id: AKIAI5GGZIUKROBMISJQ
+  secret_access_key: %aws_shared_access_key%
+  bucket: album-store-lambda
   region: eu-west-1
   unzip: true|false (disabled by default)
   set_public: true|false (disabled by default)
   folder:
-  artifact:archive.zip
+  artifact: archive.zip
