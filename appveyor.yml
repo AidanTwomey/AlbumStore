@@ -23,7 +23,7 @@ test_script:
 build: off
 
 artifacts:
-  - path: *
+  - path: '*'
     name: AlbumStore
     type: zip
 
