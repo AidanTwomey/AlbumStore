@@ -29,7 +29,7 @@ artifacts:
 deploy:
   provider: S3
   access_key_id: AKIAI5GGZIUKROBMISJQ
-  secret_access_key: %aws_shared_access_key%
+  secret_access_key: '%aws_shared_access_key%'
   bucket: album-store-lambda
   region: eu-west-1
   unzip: true|false (disabled by default)
