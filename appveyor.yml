@@ -19,13 +19,13 @@ test_script:
   # run tests
   - npm test
 
+# Deployment Options
+before_deploy:
+  - node .\Tools\PackageBuild.js
+  - ps: Get-ChildItem .\Build\*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
+  
 # Don't actually build.
 build: off
-
-artifacts:
-  - path: '%APPVEYOR_BUILD_FOLDER%'
-    name: archive.zip
-    type: zip
 
 deploy:
   provider: S3
@@ -36,4 +36,4 @@ deploy:
   unzip: true|false (disabled by default)
   set_public: true|false (disabled by default)
   folder:
-  artifact: archive.zip
+  artifact:
