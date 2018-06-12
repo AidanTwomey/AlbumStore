@@ -22,8 +22,11 @@ test_script:
 # Don't actually build.
 build: off
 
-before_deploy:
+after_build:
   - sh: zip flattener.zip *
+
+artifacts:
+  - path: flattener.zip
 
 deploy:
   provider: S3
