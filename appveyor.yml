@@ -19,13 +19,11 @@ test_script:
   # run tests
   - npm test
 
-# Deployment Options
-before_deploy:
-  - node .\Tools\PackageBuild.js
-  - ps: Get-ChildItem .\Build\*.zip | % { Push-AppveyorArtifact $_.FullName -FileName $_.Name }
-  
 # Don't actually build.
 build: off
+
+before_deploy:
+  - sh: zip flattener.zip *
 
 deploy:
   provider: S3
@@ -33,7 +31,7 @@ deploy:
   secret_access_key: '%aws_shared_access_key%'
   bucket: album-store-lambda
   region: eu-west-1
-  unzip: true|false (disabled by default)
-  set_public: true|false (disabled by default)
+  unzip:
+  set_public:
   folder:
-  artifact:
+  artifact: flattener.zip
