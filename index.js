@@ -9,7 +9,7 @@ exports.handler = (event, context, callback) => {
     
     var params = {
       MessageBody: returnMessage,
-      QueueUrl: 'https://sqs.eu-west-1.amazonaws.com/160534783289/flat-albums'
+      QueueUrl: Environment.GetEnvironmentVariable("FlatAlbumQueue")
     };
     
     sqs.sendMessage(params, function(err, data) {
