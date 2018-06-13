@@ -11,12 +11,17 @@ install:
   # install modules
   - npm install
 
-build_script:
+# Don't actually build.
+build: off
+
+test_script:
   # Output useful info for debugging.
   - node --version
   - npm --version
   # run tests
   - npm test
+
+after_test:
   - 7z a flattener.zip *
 
 artifacts:
