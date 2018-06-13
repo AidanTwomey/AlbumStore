@@ -23,7 +23,7 @@ test_script:
 build: off
 
 after_build:
-  - sh: zip flattener.zip *
+  - 7z a flattener.zip *
 
 artifacts:
   - path: flattener.zip
