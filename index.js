@@ -1,21 +1,20 @@
 var AWS = require('aws-sdk');
 var flatten = require('flat')
-var sqs = new AWS.SQS({region : 'eu-west-1'});
+var sns = new AWS.SNS();
+var uuid = require('uuid/v1')
 
 exports.handler = (event, context, callback) => {
     
     var flatAlbum = flatten( JSON.parse(event.body));
     var returnMessage = JSON.stringify(flatAlbum);
-    
+    var id = uuidv1();
+
     var params = {
-      MessageBody: returnMessage,
-      QueueUrl: Environment.GetEnvironmentVariable("FlatAlbumQueue")
+        Message: returnMessage, 
+        Subject: id,
+        TopicArn: Environment.GetEnvironmentVariable("FlatAlbumQueue")
     };
-    
-    sqs.sendMessage(params, function(err, data) {
-      if (err) console.log(err, err.stack); // an error occurred
-      else     console.log(data);           // successful response
-    });
+    sns.publish(params, context.done);
 
     var response = {
         "statusCode": 200,
